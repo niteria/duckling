@@ -13,20 +13,22 @@ before_cache:
 
 matrix:
   include:
-    #    crashes in travis because 2 versions of unix get installed and
-    #    when text-show tries to use TH the wrong one gets linked
-    #    - env: CABALVER=1.24 GHCVER=7.10.3 HAPPYVER=1.19.5 BUILD=cabal
-    #      compiler: ": #GHC 7.10.3"
-    #      addons: {apt: {packages: [cabal-install-1.24,ghc-7.10.3,happy-1.19.5], sources: [hvr-ghc]}}
+    # crashes in travis because 2 versions of unix get installed and
+    # when text-show tries to use TH the wrong one gets linked
+    # - env: CABALVER=1.24 GHCVER=7.10.3 HAPPYVER=1.19.5 BUILD=cabal
+    #   compiler: ": #GHC 7.10.3"
+    #   addons: {apt: {packages: [cabal-install-1.24,ghc-7.10.3,happy-1.19.5], sources: [hvr-ghc]}}
     - env: CABALVER=1.24 GHCVER=8.0.2
       compiler: ": #GHC 8.0.2"
-      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.2,alex-3.1.4,happy-1.19.5], sources: [hvr-ghc]}}
-    - env: CABALVER=1.24 GHCVER=8.2.1
-      compiler: ": #GHC 8.2.1"
-      addons: {apt: {packages: [cabal-install-1.24,ghc-8.2.1,alex-3.1.4,happy-1.19.5], sources: [hvr-ghc]}}
+      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.2,happy-1.19.5], sources: [hvr-ghc]}}
+    # blocked on https://github.com/ygale/timezone-olson/pull/4
+    # - env: CABALVER=1.24 GHCVER=8.2.1
+    #   compiler: ": #GHC 8.2.1"
+    #   addons: {apt: {packages: [cabal-install-1.24,ghc-8.2.1,happy-1.19.5], sources: [hvr-ghc]}}
 
 before_install:
  - unset CC
+ - export HAPPYVER=1.19.5
  - export PATH=$HOME/.cabal/bin:/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH
  - export PATH=/opt/happy/$HAPPYVER/bin:$PATH
 
