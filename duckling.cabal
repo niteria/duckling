@@ -496,6 +496,8 @@ library
                      , timezone-series       >= 0.1.5.1 && < 0.2
                      , unordered-containers  >= 0.2.7.2 && < 0.3
                      , vector                >= 0.11.0.0 && < 0.12
+  if impl(ghc < 8.0 && >= 7.10)
+    build-depends:   unix==2.7.1.0
   default-language:    Haskell2010
   default-extensions:  OverloadedStrings
                      , RebindableSyntax
